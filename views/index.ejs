@@ -1,0 +1,44 @@
+
+<% include partials/header %>
+
+  <h1>AddCustomer</h1>
+  <form method="post" action="/users/add">
+    <label>
+      First Name
+    </label>
+    <br>
+    <input type="text" name="firstname">
+<br>
+    <label>
+      Last Name
+    </label>
+<br>
+    <input type="text" name="lastname">
+<br>
+    <label>
+      Age
+    </label>
+<br>
+    <input type="text" name="email">
+
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+<h1>Hello from <%=title%></h1>
+<% peoples.forEach(function(person){
+%>
+<ul>
+      <li><%=person.firstname %></li>
+      <li><%=person.lastname %></li>
+      <li><%=person.age %></li>
+</ul>
+
+<%})%>
+
+
+
+<img  src=<%=img %> />
+<img  src=<%=img2 %> />
+
+<% include partials/footer %>
