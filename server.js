@@ -6,17 +6,42 @@ var morgan      = require('morgan');
 var mongoose    = require('mongoose');
 var fs     =require("fs");
 const path = require('path');
+var cool = require('cool-ascii-faces');
+var Schema = mongoose.Schema;
 
-var imgpath="/Images/product1.png";
-var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+// set up a mongoose model and pass it using module.exports
+module.exports = mongoose.model('User', new Schema({
+    name:String,
+    email:String,
+    password:String,
+    gender:String,
+    address:String,
+    contact:String
+}));
+
+module.exports = mongoose.model('Product', new Schema({
+          name:String,
+          path:String,
+          size:Number,
+          currency:String,
+          price:Number,
+          description:String,
+    }));
+    module.exports = mongoose.model('Orders', new Schema({
+          user:{type:Schema.ObjectId,ref:'User'},
+        products:[{type:Schema.ObjectId,ref:'Product'}],
+        created_at:{type:Date}
+    }));
+
+ var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
-var User   = require('./app/models/user');
-var Product   = require('./app/models/product'); // get our mongoose model
-var Orders   = require('./app/models/order'); // get our mongoose model
 var s = require('string');
 
 var apiRoutes = express.Router();
 
+app.get('/cool', function(request, response) {
+  response.send(cool());
+});
 // =======================
 // configuration =========
 // =======================
